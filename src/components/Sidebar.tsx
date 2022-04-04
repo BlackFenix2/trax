@@ -64,7 +64,7 @@ const Sidebar: React.FunctionComponent = () => (
   >
     <Box paddingY="20px" height="100%">
       <Box width="120px" marginBottom="20px" paddingX="20px">
-        <NextImage src="/logo.svg" height={60} width={120}></NextImage>
+        <NextImage src="/logo.svg" height={60} width={120} />
       </Box>
       <Box marginBottom="20px">
         <List spacing={2}>
@@ -102,10 +102,10 @@ const Sidebar: React.FunctionComponent = () => (
       <Divider bg="gray.800" />
       <Box height="66%" overflowY="auto" paddingY="20px">
         <List spacing={2}>
-          {playlist.map((playlist, index) => (
-            <ListItem key={playlist} paddingX="20px">
+          {playlist.map((playlistItem, index) => (
+            <ListItem key={playlistItem} paddingX="20px">
               <LinkBox>
-                <NextLink href={`/playlist/${playlist}`} passHref>
+                <NextLink href={`/playlist/${playlistItem}`} passHref>
                   <LinkOverlay>
                     <ListIcon
                       as={MdPlaylistAdd}
