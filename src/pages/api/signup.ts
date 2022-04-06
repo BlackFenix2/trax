@@ -4,6 +4,7 @@ import cookie from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "src/lib/prisma";
 
+const TRAX_ACCESS_TOKEN = "TRAX_ACCESS_TOKEN";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
 
@@ -29,7 +30,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   );
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize("hi", token, {
+    cookie.serialize(TRAX_ACCESS_TOKEN, token, {
       httpOnly: true,
       maxAge: 8 * 60 * 60,
       path: "/",

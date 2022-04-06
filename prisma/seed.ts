@@ -29,6 +29,8 @@ const run = async () => {
     where: { email: "user@test.com" },
     update: {},
     create: {
+      firstName: "Ernie",
+      lastName: "Francis",
       email: "user@test.com",
       password: bcrypt.hashSync("password", salt),
     },
@@ -40,7 +42,7 @@ const run = async () => {
     new Array(10).fill(1).map(async (_, index) => {
       return prisma.playlist.create({
         data: {
-          name: `playlist ${index + 1}`,
+          name: `Playlist #${index + 1}`,
           user: { connect: { id: user.id } },
           songs: {
             connect: songs.map((song) => ({ id: song.id })),

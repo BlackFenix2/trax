@@ -2,6 +2,9 @@ import "reset-css";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import PlayerLayout from "src/components/PlayerLayout";
+import Head from "next/head";
+import { StoreProvider } from "easy-peasy";
+import { store } from "src/lib/store";
 
 const theme = extendTheme({
   colors: {
@@ -31,12 +34,27 @@ const theme = extendTheme({
     },
   },
 });
-const MyApp = ({ Component, pageProps }: AppProps) => {
+
+/**
+ * list of routes to omit the next.js layout form
+ */
+const noLayoutPages = ["/signin", "/signup"];
+
+const MyApp = ({ Component, pageProps, ...appProps }: AppProps) => {
   return (
     <ChakraProvider theme={theme}>
-      <PlayerLayout>
-        <Component {...pageProps} />
-      </PlayerLayout>
+      <StoreProvider store={store}>
+        <Head>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        {noLayoutPages.includes(appProps.router.pathname.toLowerCase()) ? (
+          <Component {...pageProps} />
+        ) : (
+          <PlayerLayout>
+            <Component {...pageProps} />
+          </PlayerLayout>
+        )}
+      </StoreProvider>
     </ChakraProvider>
   );
 };
