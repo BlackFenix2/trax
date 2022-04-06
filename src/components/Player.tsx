@@ -51,7 +51,7 @@ const Player = ({ songs, activeSong }: Props) => {
 
   const repeatRef = useRef(repeat);
 
-  const setActiveSong = useStoreActions((store) => store.changeActiveSong);
+  const setActiveSong = useStoreActions((store: any) => store.changeActiveSong);
 
   useEffect(() => {
     let timerId: number = 0;
