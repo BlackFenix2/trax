@@ -123,7 +123,7 @@ const Player = ({ songs, activeSong }: Props) => {
     setDuration(songDuration);
   };
 
-  const onSeek = (event) => {
+  const onSeek = (event: any) => {
     setSeek(parseFloat(event[0]));
     soundRef.current.seek(event[0]);
   };
@@ -207,10 +207,12 @@ const Player = ({ songs, activeSong }: Props) => {
           </Box>
           <Box width="80%">
             <RangeSlider
+              // aria-label prop for RangeSLider conflicts with jsx-a11y/aria-proptypes linting rule
+              // eslint-disable-next-line jsx-a11y/aria-proptypes
               aria-label={["min", "max"]}
               step={0.1}
               min={0}
-              max={duration ? duration.toFixed(2) : 0}
+              max={duration ? (duration.toFixed(2) as unknown as number) : 0}
               onChange={onSeek}
               value={[seek]}
               onChangeStart={() => setIsSeeking(true)}

@@ -1,11 +1,14 @@
-import { InferGetServerSidePropsType } from "next";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import React from "react";
 import GradientLayout from "src/components/GradientLayout";
 import SongsTable from "src/components/SongsTable";
 import { validateToken } from "src/lib/auth";
 import prisma from "src/lib/prisma";
 
-export const getServerSideProps = async ({ query, req }) => {
+export const getServerSideProps = async ({
+  query,
+  req,
+}: GetServerSidePropsContext) => {
   let user;
   try {
     user = await validateToken(req.cookies.TRAX_ACCESS_TOKEN);
@@ -21,7 +24,7 @@ export const getServerSideProps = async ({ query, req }) => {
     where: {
       // convet string to number
       id: +query.id,
-      userId: user.id,
+      userId: (user as any).id,
     },
     include: {
       songs: {

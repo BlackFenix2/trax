@@ -17,7 +17,7 @@ const SongsTable = ({ songs }: Props) => {
   const playSongs = useStoreActions((store: any) => store.changeActiveSongs);
   const setActiveSong = useStoreActions((store: any) => store.changeActiveSong);
 
-  const handlePlay = (activeSong?) => {
+  const handlePlay = (activeSong?: any) => {
     setActiveSong(activeSong || songs[0]);
     playSongs(songs);
   };

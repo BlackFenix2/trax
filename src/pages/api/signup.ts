@@ -8,19 +8,20 @@ const TRAX_ACCESS_TOKEN = "TRAX_ACCESS_TOKEN";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
 
-  const { email, password } = req.body;
+  const { email, password, firstName = "Null", lastName = "User" } = req.body;
 
   let user;
 
   try {
     user = await prisma.user.create({
       data: {
-        email: req.body.email,
+        firstName,
+        lastName,
+        email,
         password: bcrypt.hashSync(password, salt),
       },
     });
   } catch (e) {
-    console.error("Error in the hole: ", e);
     res.status(401).json({ error: "Email already in use" });
   }
   const token = jwt.sign(

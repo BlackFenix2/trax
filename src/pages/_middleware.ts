@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const signedInPages = ["/", "/playlist", "/library"];
-export default async function middleware(
-  req: NextRequest,
-  res: NextResponse,
-  next: Function
-) {
+export default async function middleware(req: NextRequest) {
   if (
     signedInPages.find((page) => page === req.nextUrl.pathname.toLowerCase())
   ) {

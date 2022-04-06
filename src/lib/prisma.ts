@@ -1,14 +1,10 @@
 import { PrismaClient, Artist, Song, Playlist, User } from "@prisma/client";
 
 // add prisma to the NodeJS global type
-interface CustomNodeJsGlobal extends NodeJS.Global {
-  prisma: PrismaClient;
-}
-
 // Prevent multiple instances of Prisma Client in development
-declare const global: CustomNodeJsGlobal;
+declare const global: any;
 
-const prisma = global.prisma || new PrismaClient();
+const prisma: PrismaClient = global.prisma || new PrismaClient();
 
 // load global prisma in development, ignore re-assignment for production
 if (process.env.NODE_ENV === "development") global.prisma = prisma;

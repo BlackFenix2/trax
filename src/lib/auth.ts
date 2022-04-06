@@ -18,7 +18,6 @@ export const validateRoute = (handler) => {
         }
       } catch (e) {
         res.status(401).json({ error: "Invalid token" });
-        console.error(e);
       }
       return handler(req, res, user);
     }

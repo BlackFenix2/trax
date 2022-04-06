@@ -4,7 +4,6 @@ import {
   ListItem,
   ListIcon,
   Divider,
-  Center,
   LinkBox,
   LinkOverlay,
 } from "@chakra-ui/layout";
@@ -67,7 +66,7 @@ const Sidebar: React.FunctionComponent = () => {
         </Box>
         <Box marginBottom="20px">
           <List spacing={2}>
-            {navMenu.map((menu, index) => (
+            {navMenu.map((menu) => (
               <ListItem key={menu.name} paddingX="20px" fontSize="16px">
                 <LinkBox>
                   <NextLink href={menu.route} passHref>
@@ -88,7 +87,7 @@ const Sidebar: React.FunctionComponent = () => {
 
         <Box marginTop="20px">
           <List spacing={2}>
-            {musicMenu.map((menu, index) => (
+            {musicMenu.map((menu) => (
               <ListItem key={menu.name} paddingX="20px" fontSize="16px">
                 <LinkBox>
                   <NextLink href={menu.route} passHref>
@@ -124,7 +123,7 @@ const Sidebar: React.FunctionComponent = () => {
           }}
         >
           <List spacing={2}>
-            {playlists.map((playlist, index) => (
+            {playlists.map((playlist) => (
               <ListItem key={playlist.id} paddingX="20px">
                 <LinkBox>
                   <NextLink href={`/playlist/${playlist.id}`} passHref>

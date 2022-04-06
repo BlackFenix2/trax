@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
-import { useStore, useStoreState } from "easy-peasy";
+import { useStoreState } from "easy-peasy";
 import Player from "./Player";
 
 const PlayerBar = () => {
