@@ -7,11 +7,20 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { SongModel } from "src/lib/prisma";
 import { formatDate, formatTime } from "src/lib/formatters";
 
+import { useStoreActions } from "easy-peasy";
+
 type Props = {
   songs: SongModel[];
 };
 
 const SongsTable = ({ songs }: Props) => {
+  const playSongs = useStoreActions((store: any) => store.changeActiveSongs);
+  const setActiveSong = useStoreActions((store: any) => store.changeActiveSong);
+
+  const handlePlay = (activeSong?) => {
+    setActiveSong(activeSong || songs[0]);
+    playSongs(songs);
+  };
   return (
     <Box bg="transparent" color="white">
       <Box padding="10px" marginBottom="20px">
@@ -22,6 +31,7 @@ const SongsTable = ({ songs }: Props) => {
             colorScheme="green"
             size="lg"
             isRound
+            onClick={() => handlePlay()}
           />
         </Box>
         <Table variant="unstyled">
@@ -46,6 +56,7 @@ const SongsTable = ({ songs }: Props) => {
                     backgroundColor: "rgba(255,255,255,0.1)",
                   },
                 }}
+                onClick={() => handlePlay(song)}
               >
                 <Td>{index + 1}</Td>
                 <Td>{song.name}</Td>

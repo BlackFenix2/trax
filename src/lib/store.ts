@@ -8,10 +8,6 @@ type SongsModel = {
   changeActiveSongs: Action<SongsModel, SongModel[]>;
 };
 
-type StoreModel = {
-  songs: SongsModel;
-};
-
 export const store = createStore<SongsModel>({
   activeSongs: [],
   activeSong: null,

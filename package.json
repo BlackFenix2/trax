@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "format": "prettier --write src/**/*.{ts,tsx,js,jsx,json,md,yml,yaml,css,scss,html,mdx}",
-    "build": "next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint"
   },
