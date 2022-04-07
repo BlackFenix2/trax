@@ -4,10 +4,8 @@ import {
   Input,
   Button,
   Text,
-  Link,
   LinkBox,
   LinkOverlay,
-  ListIcon,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
@@ -34,10 +32,6 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
     });
     setIsLoading(false);
     router.push("/");
-  };
-
-  const navigateToSignUp = () => {
-    router.push("/Signup");
   };
 
   return (
@@ -83,7 +77,7 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
               <LinkBox>
                 <NextLink href="/Signup" passHref>
                   <LinkOverlay>
-                    <Text>Don't have an account? Sign Up</Text>
+                    <Text>Don&apos;t have an account? Sign Up</Text>
                   </LinkOverlay>
                 </NextLink>
               </LinkBox>
