@@ -24,7 +24,9 @@ export const getServerSideProps = async ({
     where: {
       // convet string to number
       id: +query.id,
-      userId: (user as any).id,
+
+      // TODO uncomment once playlists can be uploaded.
+      // userId: (user as any).id,
     },
     include: {
       songs: {
