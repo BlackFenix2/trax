@@ -1,6 +1,7 @@
 import React from "react";
 import { Flex, Box, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/react";
+import UserBadge from "./UserBadge";
 
 type Props = {
   color: string;
@@ -42,6 +43,9 @@ const GradientLayout: React.FunctionComponent<Props> = ({
           </Text>
           <Text fontSize="6xl">{title}</Text>
           <Text fontSize="x-small">{description}</Text>
+        </Box>
+        <Box marginLeft="auto" alignSelf="start">
+          <UserBadge name={title} />
         </Box>
       </Flex>
       <Box paddingY={50}>{children}</Box>

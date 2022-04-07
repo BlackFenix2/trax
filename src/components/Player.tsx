@@ -65,9 +65,9 @@ const Player = ({ songs, activeSong }: Props) => {
 
       // kick off animation frame
       timerId = requestAnimationFrame(f);
-      return () => cancelAnimationFrame(timerId);
     }
     cancelAnimationFrame(timerId);
+    return () => cancelAnimationFrame(timerId);
   }, [playing, isSeeking]);
 
   useEffect(() => {

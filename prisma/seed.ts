@@ -39,7 +39,7 @@ const run = async () => {
   const songs = await prisma.song.findMany({});
 
   await Promise.all(
-    new Array(10).fill(1).map(async (_, index) => {
+    new Array(2).fill(1).map(async (_, index) => {
       return prisma.playlist.create({
         data: {
           name: `Playlist #${index + 1}`,

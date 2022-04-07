@@ -123,7 +123,7 @@ const Sidebar: React.FunctionComponent = () => {
           }}
         >
           <List spacing={2}>
-            {playlists.map((playlist) => (
+            {playlists?.map((playlist) => (
               <ListItem key={playlist.id} paddingX="20px">
                 <LinkBox>
                   <NextLink href={`/playlist/${playlist.id}`} passHref>

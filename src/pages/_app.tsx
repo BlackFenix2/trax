@@ -21,18 +21,18 @@ const theme = extendTheme({
     },
   },
 
-  components: {
-    Button: {
-      variants: {
-        link: {
-          ":focus": {
-            outline: "none",
-            boxShadow: "none",
-          },
-        },
-      },
-    },
-  },
+  // components: {
+  //   Button: {
+  //     variants: {
+  //       link: {
+  //         ":focus": {
+  //           outline: "none",
+  //           boxShadow: "none",
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
 });
 
 /**
