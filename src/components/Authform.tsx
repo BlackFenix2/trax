@@ -1,7 +1,18 @@
-import { Box, Flex, Input, Button } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Input,
+  Button,
+  Text,
+  Link,
+  LinkBox,
+  LinkOverlay,
+  ListIcon,
+} from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import NextImage from "next/image";
+import NextLink from "next/link";
 import { auth } from "../lib/mutations";
 
 type Props = {
@@ -23,6 +34,10 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
     });
     setIsLoading(false);
     router.push("/");
+  };
+
+  const navigateToSignUp = () => {
+    router.push("/Signup");
   };
 
   return (
@@ -64,6 +79,23 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
             >
               {mode}
             </Button>
+            {mode === "signin" ? (
+              <LinkBox>
+                <NextLink href="/Signup" passHref>
+                  <LinkOverlay>
+                    <Text>Don't have an account? Sign Up</Text>
+                  </LinkOverlay>
+                </NextLink>
+              </LinkBox>
+            ) : (
+              <LinkBox>
+                <NextLink href="/Signin" passHref>
+                  <LinkOverlay>
+                    <Text>Already have an account? Sign In</Text>
+                  </LinkOverlay>
+                </NextLink>
+              </LinkBox>
+            )}
           </form>
         </Box>
       </Flex>
