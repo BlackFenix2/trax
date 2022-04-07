@@ -85,7 +85,7 @@ const Sidebar: React.FunctionComponent = () => {
           </List>
         </Box>
 
-        <Box marginTop="20px">
+        <Box marginTop="20px" marginBottom="20px">
           <List spacing={2}>
             {musicMenu.map((menu) => (
               <ListItem key={menu.name} paddingX="20px" fontSize="16px">

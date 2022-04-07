@@ -33,12 +33,12 @@ const Home: NextPage<any> = ({
           <Text fontSize="md">Only visible to you</Text>
         </Box>
         <Flex>
-          {artists.map((artist) => (
+          {artists.map((artist, index) => (
             <Box paddingX="10px" width="20%" key={artist.id}>
               <Box bg="gray.900" borderRadius={4} padding={15} width="100%">
                 <Text>{artist.name}</Text>
                 <Image
-                  src="http://placekitten.com/300/300"
+                  src={`http://placekitten.com/300/300/?image=${index + 1}`}
                   borderRadius="100%"
                 />
                 <Box marginTop="20px">

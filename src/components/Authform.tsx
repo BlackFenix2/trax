@@ -182,7 +182,7 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
                   },
                 }}
               >
-                {mode}
+                {mode === "signin" ? "Log in" : "Create account"}
               </Button>
             </Stack>
           </form>

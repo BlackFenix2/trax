@@ -1,5 +1,4 @@
 import { Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import React from "react";
 import { FaChevronDown } from "react-icons/fa";
 
@@ -8,10 +7,9 @@ type Props = {
 };
 
 const UserBadge = ({ name }: Props) => {
-  const router = useRouter();
-
   const handleClick = () => {
-    router.push("/Signin");
+    // use window vs client route to sign out user since cookie is http-only
+    window.location.href = "/Signin";
   };
   return (
     <Menu>
