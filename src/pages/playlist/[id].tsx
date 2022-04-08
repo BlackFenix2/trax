@@ -12,6 +12,7 @@ export const getServerSideProps = async ({
   let user;
   try {
     user = await validateToken(req.cookies.TRAX_ACCESS_TOKEN);
+    console.info(user);
   } catch (e) {
     return {
       redirect: {
