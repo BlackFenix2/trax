@@ -21,9 +21,9 @@ import {
   MdSkipPrevious,
 } from "react-icons/md";
 
-import { useStoreActions } from "easy-peasy";
 import { SongModel } from "src/lib/prisma";
 import { formatTime } from "src/lib/formatters";
+import { useStoreActions } from "src/lib/store";
 
 type Props = {
   songs: SongModel[];
@@ -51,7 +51,7 @@ const Player = ({ songs, activeSong }: Props) => {
 
   const repeatRef = useRef(repeat);
 
-  const setActiveSong = useStoreActions((store: any) => store.changeActiveSong);
+  const setActiveSong = useStoreActions((store) => store.changeActiveSong);
 
   useEffect(() => {
     let timerId: number = 0;
@@ -91,10 +91,14 @@ const Player = ({ songs, activeSong }: Props) => {
   };
 
   const prevSong = () => {
+    // reset duration display to prevent caching of old duration during song transition
+    setDuration(0);
     setIndex((state) => (state ? state - 1 : songs.length - 1));
   };
 
   const nextSong = () => {
+    // reset duration display to prevent caching of old duration during song transition
+    setDuration(0);
     setIndex((state: any) => {
       if (shuffle) {
         const next = Math.floor(Math.random() * songs.length);
@@ -131,6 +135,7 @@ const Player = ({ songs, activeSong }: Props) => {
     <Box>
       <Box>
         <ReactHowler
+          preload
           playing={playing}
           src={activeSong?.url}
           ref={soundRef}

@@ -1,9 +1,11 @@
 import { Box, Flex, Text } from "@chakra-ui/layout";
-import { useStoreState } from "easy-peasy";
+import { useStoreState } from "src/lib/store";
 import Player from "./Player";
 
 const PlayerBar = () => {
-  const songs = useStoreState((state: any) => state.activeSongs);
+  const songs = useStoreState((state) => state.activeSongs);
+
+  // TODO add DTO type beween Redux state and Prisma-generated type
   const activeSong = useStoreState((state: any) => state.activeSong);
 
   return (

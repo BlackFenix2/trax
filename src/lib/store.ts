@@ -1,4 +1,4 @@
-import { createStore, action, Action } from "easy-peasy";
+import { createStore, action, Action, createTypedHooks } from "easy-peasy";
 import { SongModel } from "./prisma";
 
 type SongsModel = {
@@ -18,3 +18,9 @@ export const store = createStore<SongsModel>({
     state.activeSongs = payload;
   }),
 });
+
+const typedHooks = createTypedHooks<SongsModel>();
+
+export const { useStoreActions } = typedHooks;
+export const { useStoreDispatch } = typedHooks;
+export const { useStoreState } = typedHooks;
