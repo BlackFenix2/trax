@@ -2,7 +2,6 @@ import { Box, Flex } from "@chakra-ui/layout";
 import { Text, Image } from "@chakra-ui/react";
 import type { NextPage, InferGetServerSidePropsType } from "next";
 import Head from "next/head";
-import { Suspense } from "react";
 import GradientLayout from "src/components/GradientLayout";
 import { useMe } from "src/lib/hooks";
 import prisma from "src/lib/prisma";
