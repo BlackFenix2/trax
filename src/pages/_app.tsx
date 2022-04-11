@@ -1,6 +1,16 @@
 import "reset-css";
 import type { AppProps } from "next/app";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  ChakraProvider,
+  Link,
+  extendTheme,
+  Icon,
+} from "@chakra-ui/react";
+import { MdLaunch } from "react-icons/md";
 import PlayerLayout from "src/components/PlayerLayout";
 import Head from "next/head";
 import { StoreProvider } from "easy-peasy";
@@ -47,6 +57,18 @@ const MyApp = ({ Component, pageProps, ...appProps }: AppProps) => {
         <Head>
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <Alert status="warning" display="flex" justifyContent="center">
+          <AlertIcon />
+          <AlertTitle mr={2}>This is the bootcamp version of trax</AlertTitle>
+          <AlertDescription>
+            You can find the improved version of trax here{" "}
+            <Link href="https://trax.erniefrancisiv.com">
+              <b>
+                trax.erniefrancisiv.com <Icon as={MdLaunch} />
+              </b>
+            </Link>
+          </AlertDescription>
+        </Alert>
         {noLayoutPages.includes(appProps.router.pathname.toLowerCase()) ? (
           <Component {...pageProps} />
         ) : (
