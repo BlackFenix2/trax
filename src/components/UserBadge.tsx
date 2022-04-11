@@ -9,7 +9,7 @@ type Props = {
 const UserBadge = ({ name }: Props) => {
   const handleClick = () => {
     // use window vs client route to sign out user since cookie is http-only
-    window.location.href = "/Signin";
+    window.location.href = "/api/signout";
   };
   return (
     <Menu>

@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import Head from "next/head";
 import React from "react";
 import GradientLayout from "src/components/GradientLayout";
 import SongsTable from "src/components/SongsTable";
@@ -68,16 +69,21 @@ const Playlist: React.FunctionComponent<any> = (
 
   const color = getBGColor(playlist.id);
   return (
-    <GradientLayout
-      color={color}
-      subtitle="Playlists"
-      title={playlist.name}
-      description={`${playlist.songs.length} songs`}
-      image={`https://picsum.photos/400?random=${playlist.id}`}
-      roundImage={false}
-    >
-      <SongsTable songs={playlist.songs} />
-    </GradientLayout>
+    <>
+      <Head>
+        <title>Trax Playlist</title>
+      </Head>
+      <GradientLayout
+        color={color}
+        subtitle="Playlists"
+        title={playlist.name}
+        description={`${playlist.songs.length} songs`}
+        image={`https://picsum.photos/400?random=${playlist.id}`}
+        roundImage={false}
+      >
+        <SongsTable songs={playlist.songs} />
+      </GradientLayout>
+    </>
   );
 };
 

@@ -1,4 +1,6 @@
 {
   "presets": ["next/babel"],
+
+  // fixes bug when parsing json from prisma queries
   "plugins": ["superjson-next"]
 }

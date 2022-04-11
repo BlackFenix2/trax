@@ -1,7 +1,15 @@
+import Head from "next/head";
 import AuthForm from "src/components/Authform";
 
 const Signin = () => {
-  return <AuthForm mode="signin" />;
+  return (
+    <>
+      <Head>
+        <title>Sign in</title>
+      </Head>
+      <AuthForm mode="signin" />
+    </>
+  );
 };
 
 export default Signin;

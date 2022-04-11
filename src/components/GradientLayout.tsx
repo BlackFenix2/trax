@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Box, Text } from "@chakra-ui/layout";
-import { Image } from "@chakra-ui/react";
+import { Image, Skeleton } from "@chakra-ui/react";
 import UserBadge from "./UserBadge";
 
 type Props = {
@@ -37,15 +37,23 @@ const GradientLayout: React.FunctionComponent<Props> = ({
             borderRadius={roundImage ? "100%" : "3px"}
           />
         </Box>
+
         <Box padding="20px" lineHeight="40px" color="white">
           <Text fontSize="sm" fontWeight="bold" casing="uppercase">
             {subtitle}
           </Text>
-          <Text fontSize="6xl">{title}</Text>
-          <Text fontSize="x-small">{description}</Text>
+          <Skeleton isLoaded={!!title && title !== "null null"}>
+            <Text fontSize="6xl">{title}</Text>
+          </Skeleton>
+          <Skeleton isLoaded={!!description && description !== "undefined"}>
+            <Text fontSize="x-small">{description}</Text>
+          </Skeleton>
         </Box>
+
         <Box marginLeft="auto" alignSelf="start">
-          <UserBadge name={title} />
+          <Skeleton isLoaded={!!title && title !== "null null"}>
+            <UserBadge name={title} />
+          </Skeleton>
         </Box>
       </Flex>
       <Box paddingY={50}>{children}</Box>

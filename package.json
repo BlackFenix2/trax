@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "cypress:open": "cypress open",
-    "test": "start-server-and-test dev 3000 cypress:open"
+    "cypress:run": "cypress run",
+    "test": "start-server-and-test dev 3000 cypress:open",
+    "test:run": "start-server-and-test dev 3000 cypress:run"
   },
   "dependencies": {
     "@chakra-ui/layout": "^1.5.1",
@@ -30,7 +32,6 @@
     "react-dom": "17.0.2",
     "react-howler": "^5.2.0",
     "react-icons": "^4.3.1",
-    "reset-css": "^5.0.1",
     "swr": "^1.1.1"
   },
   "devDependencies": {

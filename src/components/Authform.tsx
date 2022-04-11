@@ -45,37 +45,48 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
         return;
       }
       try {
-        await auth(mode, {
+        const test = await auth(mode, {
           firstName,
           lastName,
           email,
           password,
         });
+        if (test.error) {
+          throw new Error(test.error);
+        }
         setIsLoading(false);
         router.push("/");
       } catch (err) {
         setIsLoading(false);
         setError(true);
-        setErrorMessage("Invalid email or password");
+        setErrorMessage((err as Error).message);
       }
     }
     // user is signing in
     else {
       setIsLoading(true);
-
       try {
-        await auth(mode, {
+        const test = await auth(mode, {
           email,
           password,
         });
+        if (test.error) {
+          throw new Error(test.error);
+        }
+
         setIsLoading(false);
         router.push("/");
       } catch (err) {
         setIsLoading(false);
         setError(true);
-        setErrorMessage("Invalid email or password");
+        setErrorMessage((err as Error).message);
       }
     }
+  };
+
+  const resetAlert = () => {
+    setError(false);
+    setErrorMessage("");
   };
 
   return (
@@ -89,7 +100,8 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
         <NextImage src="/logo.svg" height={60} width={120} />
       </Flex>
       <Flex justify="center" align="center" height="calc(100vh - 100px)">
-        <Box padding="50px" bg="gray.900" borderRadius="6px">
+        {/* fixed width to prevent alert component from re-sizing container */}
+        <Box padding="50px" bg="gray.900" borderRadius="6px" minWidth="405px">
           <form onSubmit={handleSubmit}>
             <Stack>
               <Center>
@@ -124,6 +136,7 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
               <Alert
                 status="error"
                 color="black"
+                borderRadius="6px"
                 visibility={error ? "visible" : "hidden"}
               >
                 <AlertIcon />
@@ -148,17 +161,21 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
                 </>
               )}
               <Input
-                placeholder="email"
+                isRequired
+                placeholder="Email"
                 type="email"
                 onChange={(event) => {
                   setEmail(event.target.value);
+                  resetAlert();
                 }}
               />
               <Input
-                placeholder="password"
+                isRequired
+                placeholder="Password"
                 type="password"
                 onChange={(event) => {
                   setPassword(event.target.value);
+                  resetAlert();
                 }}
               />
 
@@ -168,6 +185,7 @@ const AuthForm: React.FunctionComponent<Props> = ({ mode }) => {
                   type="password"
                   onChange={(event) => {
                     setConfirm(event.target.value);
+                    resetAlert();
                   }}
                 />
               )}

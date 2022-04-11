@@ -14,7 +14,19 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+/// <reference types="cypress" />
+
+declare namespace Cypress {
+  interface Chainable<Subject = any> {
+    /**
+     * Custom command to ... add your description here
+     * @example cy.clickOnMyJourneyInCandidateCabinet()
+     */
+    clickOnMyJourneyInCandidateCabinet(): Chainable<null>;
+  }
+}

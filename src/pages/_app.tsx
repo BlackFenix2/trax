@@ -1,4 +1,3 @@
-import "reset-css";
 import type { AppProps } from "next/app";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import PlayerLayout from "src/components/PlayerLayout";
@@ -40,14 +39,14 @@ const theme = extendTheme({
  */
 const noLayoutPages = ["/signin", "/signup"];
 
-const MyApp = ({ Component, pageProps, ...appProps }: AppProps) => {
+const MyApp = ({ Component, router, pageProps }: AppProps) => {
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider resetCSS theme={theme}>
       <StoreProvider store={store}>
         <Head>
           <link rel="icon" href="/favicon.ico" />
         </Head>
-        {noLayoutPages.includes(appProps.router.pathname.toLowerCase()) ? (
+        {noLayoutPages.includes(router.pathname.toLowerCase()) ? (
           <Component {...pageProps} />
         ) : (
           <PlayerLayout>
